@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 
 namespace Tag
@@ -9,11 +10,13 @@ namespace Tag
      * Collision to end game
      * 
      */
-    public class SeekerScript : MonoBehaviour
+    public class SeekerScript : NetworkBehaviour
     {
         // Start is called before the first frame update
         void Start()
         {
+            if (!isLocalPlayer) return;
+            print("Seeker spawned");
 
         }
 
@@ -25,6 +28,7 @@ namespace Tag
 
         private void OnCollisionEnter(Collision other)
         {
+            if (!isLocalPlayer) return;
             if (other.gameObject.tag.Equals("Hider"))
             {
                 

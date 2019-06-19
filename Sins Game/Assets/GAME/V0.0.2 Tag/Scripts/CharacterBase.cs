@@ -9,24 +9,43 @@ namespace Tag
      * Wall Jump Ability
      * 
      */
-    public class CharacterBase : MonoBehaviour
+    public class CharacterBase : NetworkBehaviour
     {
+        [SerializeField] private Rigidbody rb;
+        [SerializeField] private int speedMultiplier;
+        [SerializeField] private int rotationSpeed;
         // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
-        [Command]
-        public void cmdSpawn()
+        void Awake()
         {
             
+        }
+
+        void Update()
+        {
+            if (!isLocalPlayer) return;
+            Move();
+            Rotate();
+        }
+
+        public void Move()
+        {
+            rb.AddRelativeForce(Vector3.forward * (Input.GetAxis("Vertical") * speedMultiplier),ForceMode.VelocityChange);
+            //changed from velocity to incorperate a max speed 
+        }
+
+        public void Rotate()
+        {
+            rb.AddRelativeTorque(0, Input.GetAxis("Horizontal") * rotationSpeed, 0, ForceMode.VelocityChange);
+        } 
+        
+        [ClientRpc]
+        public void RpcSpawnHider()
+        {
+            gameObject.AddComponent<HiderScript>();
+        }
+        public void RpcSpawnSeeker()
+        {
+            gameObject.AddComponent<SeekerScript>();
         }
     }
 }

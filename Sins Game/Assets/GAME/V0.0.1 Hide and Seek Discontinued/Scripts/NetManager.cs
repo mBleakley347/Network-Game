@@ -1,24 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Mirror;
+using Tag;
 using UnityEngine;
 
 public class NetManager : NetworkManager
 {
+    private bool first;
 
-    public Transform SpawnLocation;
-    public GameObject[] Sins;
-    public GameObject Hider;
-/*
     public override void OnServerAddPlayer(NetworkConnection conn, AddPlayerMessage extraMessage)
     {
-        Transform start = SpawnLocation;
-        GameObject player = Instantiate(Hider, start.position, start.rotation);
-        NetworkServer.AddPlayerForConnection(conn, player);
-    }
-*/
-    public override void OnServerDisconnect(NetworkConnection conn)
-    {
-        base.OnServerDisconnect(conn);
+        base.OnServerAddPlayer(conn, extraMessage);
+        if (first)
+        {
+            conn.playerController.gameObject.GetComponent<CharacterBase>().RpcSpawnSeeker();
+            first = false;
+        }
+        else
+        {
+            conn.playerController.gameObject.GetComponent<CharacterBase>().RpcSpawnHider();
+        }
     }
 }
