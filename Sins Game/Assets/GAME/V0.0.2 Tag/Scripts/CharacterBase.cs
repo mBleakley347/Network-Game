@@ -17,7 +17,9 @@ namespace Tag
         // Start is called before the first frame update
         void Awake()
         {
-            
+            if (!isLocalPlayer) return;
+            gameObject.AddComponent<Camera>();
+            gameObject.AddComponent<AudioListener>();
         }
 
         void Update()
@@ -42,10 +44,12 @@ namespace Tag
         public void RpcSpawnHider()
         {
             gameObject.AddComponent<HiderScript>();
+            
         }
         public void RpcSpawnSeeker()
         {
             gameObject.AddComponent<SeekerScript>();
+            
         }
     }
 }

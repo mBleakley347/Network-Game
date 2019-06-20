@@ -104,12 +104,12 @@ Rigidbody:
   m_GameObject: {fileID: 4114304383740828154}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 5
-  m_AngularDrag: 0.05
+  m_Drag: 15
+  m_AngularDrag: 10
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &7060815919812089547
 MonoBehaviour:
@@ -124,10 +124,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncInterval: 0.1
-  Hider: 1
   rb: {fileID: 6202678639509099097}
-  speedMultiplier: 5
-  rotationSpeed: 5
+  speedMultiplier: 1
+  rotationSpeed: 1
 --- !u!114 &2308241845587599096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,8 +141,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   localPlayerAuthority: 1
-  m_AssetId: 
-  m_SceneId: 3388569489
+  m_AssetId: 7b4e64e970673a3439900a0db35c2466
+  m_SceneId: 0
 --- !u!114 &1509009047588027168
 MonoBehaviour:
   m_ObjectHideFlags: 0
