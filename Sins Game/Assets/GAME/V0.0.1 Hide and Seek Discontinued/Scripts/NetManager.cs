@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class NetManager : NetworkManager
 {
-    private bool first;
+    private bool first = true;
 
     public override void OnServerAddPlayer(NetworkConnection conn, AddPlayerMessage extraMessage)
     {

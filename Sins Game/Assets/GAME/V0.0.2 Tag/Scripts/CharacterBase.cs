@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Tag
 {
@@ -14,8 +15,9 @@ namespace Tag
         [SerializeField] private Rigidbody rb;
         [SerializeField] private int speedMultiplier;
         [SerializeField] private int rotationSpeed;
+        [SerializeField] private GameObject light;
         // Start is called before the first frame update
-        void Awake()
+        void Start()
         {
             if (!isLocalPlayer) return;
             gameObject.AddComponent<Camera>();
@@ -44,12 +46,13 @@ namespace Tag
         public void RpcSpawnHider()
         {
             gameObject.AddComponent<HiderScript>();
-            
+            this.GetComponent<MeshRenderer>().shadowCastingMode = ShadowCastingMode.On;
         }
         public void RpcSpawnSeeker()
         {
             gameObject.AddComponent<SeekerScript>();
-            
+            Instantiate(light, transform);
+            this.GetComponent<MeshRenderer>().shadowCastingMode = ShadowCastingMode.Off;
         }
     }
 }
