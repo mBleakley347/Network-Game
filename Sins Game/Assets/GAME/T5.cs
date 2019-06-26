@@ -88,6 +88,11 @@ public class T5 : MonoBehaviour
                     //make terraces
                     noiseMap[z, x] = Mathf.Round(noise * terrace) / terrace;
                 }
+
+                if (x < 10 || z < 10)
+                {
+                    noiseMap[z, x] = 0;
+                }
             }
         }
 

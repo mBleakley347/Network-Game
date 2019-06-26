@@ -12,6 +12,7 @@ namespace Tag
      */
     public class SeekerScript : NetworkBehaviour
     {
+        public NetManager manager;
         // Start is called before the first frame update
         void Start()
         {
@@ -29,9 +30,9 @@ namespace Tag
         private void OnCollisionEnter(Collision other)
         {
             if (!isLocalPlayer) return;
-            if (other.gameObject.tag.Equals("Hider"))
+            if (other.gameObject.tag.Equals("Player"))
             {
-                
+                manager.SwapOver();
             }
         }
     }

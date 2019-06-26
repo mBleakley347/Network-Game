@@ -40,19 +40,6 @@ namespace Tag
         public void Rotate()
         {
             rb.AddRelativeTorque(0, Input.GetAxis("Horizontal") * rotationSpeed, 0, ForceMode.VelocityChange);
-        } 
-        
-        [ClientRpc]
-        public void RpcSpawnHider()
-        {
-            gameObject.AddComponent<HiderScript>();
-            this.GetComponent<MeshRenderer>().shadowCastingMode = ShadowCastingMode.On;
-        }
-        public void RpcSpawnSeeker()
-        {
-            gameObject.AddComponent<SeekerScript>();
-            Instantiate(light, transform);
-            this.GetComponent<MeshRenderer>().shadowCastingMode = ShadowCastingMode.Off;
         }
     }
 }
