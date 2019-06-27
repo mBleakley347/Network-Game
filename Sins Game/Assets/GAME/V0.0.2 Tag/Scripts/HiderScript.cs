@@ -15,6 +15,7 @@ namespace Tag
             print("hider spawned");
         }
 
+        /*
         private void OnCollisionEnter(Collision other)
         {
             if (!isLocalPlayer) return;
@@ -23,5 +24,6 @@ namespace Tag
                 manager.SwapOver();
             }
         }
+        */
     }
 }

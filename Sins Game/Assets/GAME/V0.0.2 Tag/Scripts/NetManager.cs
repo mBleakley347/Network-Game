@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using Mirror;
 using Tag;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class NetManager : NetworkManager
 {
@@ -12,9 +12,8 @@ public class NetManager : NetworkManager
     public GameObject seeker;
     public GameObject hider;
 
-    private NetworkConnection currentSeeker;
-    private NetworkConnection currentHider;
-
+    private List<NetworkConnection> players = new List<NetworkConnection>();
+    
     public override void OnServerAddPlayer(NetworkConnection conn, AddPlayerMessage extraMessage)
     {
         if (FindObjectOfType<Seeker>()) first = false;
@@ -28,24 +27,33 @@ public class NetManager : NetworkManager
         {
             SpawnHider(conn);
         }
+        players.Add(conn);
     }
 
     public void SwapOver()
     {
-        ///Todo Test this
-        NetworkConnection tempHider = currentHider;
-        NetworkConnection tempSeeker = currentSeeker;
-        SpawnSeeker(tempHider);
-        SpawnHider(tempSeeker);
+        int i;
+        for (i = players.Count - 1; i > -1; i--)
+        {
+            if (i != 0)
+            {
+                if (players[i - 1].playerController.gameObject.GetComponent<SeekerScript>())
+                {
+                    SpawnSeeker(players[i]);
+                    continue;
+                }
+            }
+            SpawnHider(players[i]);
+        }
+        if (!FindObjectOfType<SeekerScript>()) SpawnSeeker(players[0]);
     }
-
+    
     private void SpawnSeeker(NetworkConnection conn)
     {
         Transform startPos = GetStartPosition();
         GameObject temp = Instantiate(seeker, startPos.position,
             startPos.rotation);
         Destroy(conn.playerController.gameObject);
-        currentSeeker = conn;
         NetworkServer.ReplacePlayerForConnection(conn,temp);
         temp.GetComponent<SeekerScript>().manager = this;
     }
@@ -56,7 +64,6 @@ public class NetManager : NetworkManager
         GameObject temp = Instantiate(hider, startPos.position,
             startPos.rotation);
         Destroy(conn.playerController.gameObject);
-        currentHider = conn;
         NetworkServer.ReplacePlayerForConnection(conn, temp);
         temp.GetComponent<HiderScript>().manager = this;
     }

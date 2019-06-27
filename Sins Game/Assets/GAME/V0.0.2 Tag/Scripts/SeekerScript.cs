@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Mirror;
+using Mirror.Websocket;
 using UnityEngine;
 
 namespace Tag
@@ -31,8 +32,14 @@ namespace Tag
             if (!isLocalPlayer) return;
             if (other.gameObject.tag.Equals("Player"))
             {
-                manager.SwapOver();
+                CmdSwap();
             }
+        }
+
+        [Command]
+        public void CmdSwap()
+        {
+            manager.SwapOver();
         }
     }
 }
