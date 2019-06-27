@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -13,7 +14,8 @@ public class NetManager : NetworkManager
     public GameObject hider;
 
     private List<NetworkConnection> players = new List<NetworkConnection>();
-    
+    private T5 mapScript;
+
     public override void OnServerAddPlayer(NetworkConnection conn, AddPlayerMessage extraMessage)
     {
         if (FindObjectOfType<Seeker>()) first = false;
@@ -30,8 +32,17 @@ public class NetManager : NetworkManager
         players.Add(conn);
     }
 
+    public override void OnServerRemovePlayer(NetworkConnection conn, NetworkIdentity player)
+    {
+        players.Remove(conn);
+        if (conn.playerController.gameObject.GetComponent<SeekerScript>()) SwapOver();
+        base.OnServerRemovePlayer(conn, player);
+    }
+
     public void SwapOver()
     {
+        if (FindObjectOfType<T5>()) mapScript = FindObjectOfType<T5>();
+        mapScript.ChangeMap();
         int i;
         for (i = players.Count - 1; i > -1; i--)
         {
@@ -45,7 +56,12 @@ public class NetManager : NetworkManager
             }
             SpawnHider(players[i]);
         }
-        if (!FindObjectOfType<SeekerScript>()) SpawnSeeker(players[0]);
+
+        for (i = players.Count - 1; i > -1; i--)
+        {
+            if (players[i].playerController.gameObject.GetComponent<SeekerScript>()) break;
+            if (i == 0) SpawnSeeker(players[i]);
+        }
     }
     
     private void SpawnSeeker(NetworkConnection conn)

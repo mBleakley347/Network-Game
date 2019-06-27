@@ -21,11 +21,7 @@ namespace Tag
             print("Seeker spawned");
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
+        
 
         private void OnCollisionEnter(Collision other)
         {

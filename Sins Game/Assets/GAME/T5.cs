@@ -30,8 +30,8 @@ public class T5 : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        offSetx = -this.gameObject.transform.position.x;
-        offSetz = -this.gameObject.transform.position.z;
+        offSetx = -gameObject.transform.position.x;
+        offSetz = -gameObject.transform.position.z;
         Rng = Random.Range(0f, 10000f);
         Thread newThread = new Thread(GenerateNoiseMap);
         newThread.Start();
@@ -39,15 +39,12 @@ public class T5 : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ChangeMap()
     {
-        if (Input.GetKeyDown("e"))
-        {
-            this.gameObject.GetComponent<Terrain>().terrainData.SetHeights(0, 0, HeightMap);
-            Start();
-        }
+        gameObject.GetComponent<Terrain>().terrainData.SetHeights(0, 0, HeightMap);
+        Start();
     }
+
 
 
 
