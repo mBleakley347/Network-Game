@@ -7,6 +7,7 @@ namespace Tag
 {
     public class HiderScript : NetworkBehaviour
     {
+        public NetManager manager;
         // Start is called before the first frame update
         void Start()
         {
@@ -14,10 +15,13 @@ namespace Tag
             print("hider spawned");
         }
 
-        // Update is called once per frame
-        void Update()
+        private void OnCollisionEnter(Collision other)
         {
-
+            if (!isLocalPlayer) return;
+            if (other.gameObject.tag.Equals("Player"))
+            {
+                manager.SwapOver();
+            }
         }
     }
 }

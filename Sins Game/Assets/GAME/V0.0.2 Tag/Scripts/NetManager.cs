@@ -17,6 +17,7 @@ public class NetManager : NetworkManager
 
     public override void OnServerAddPlayer(NetworkConnection conn, AddPlayerMessage extraMessage)
     {
+        if (FindObjectOfType<Seeker>()) first = false;
         base.OnServerAddPlayer(conn, extraMessage);
         if (first)
         {
@@ -45,8 +46,8 @@ public class NetManager : NetworkManager
             startPos.rotation);
         Destroy(conn.playerController.gameObject);
         currentSeeker = conn;
-        temp.GetComponent<SeekerScript>().manager = this;
         NetworkServer.ReplacePlayerForConnection(conn,temp);
+        temp.GetComponent<SeekerScript>().manager = this;
     }
 
     private void SpawnHider(NetworkConnection conn)
@@ -57,6 +58,7 @@ public class NetManager : NetworkManager
         Destroy(conn.playerController.gameObject);
         currentHider = conn;
         NetworkServer.ReplacePlayerForConnection(conn, temp);
+        temp.GetComponent<HiderScript>().manager = this;
     }
     public override void OnStopHost()
     {

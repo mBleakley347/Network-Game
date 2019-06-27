@@ -18,7 +18,6 @@ namespace Tag
         {
             if (!isLocalPlayer) return;
             print("Seeker spawned");
-
         }
 
         // Update is called once per frame
