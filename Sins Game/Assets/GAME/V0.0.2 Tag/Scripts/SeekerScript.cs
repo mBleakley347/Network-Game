@@ -15,10 +15,12 @@ namespace Tag
     {
         public NetManager manager;
 
-        public GameObject light;
+        public Light light;
+        public GameObject decoyLight;
+        public GameObject decoy;
 
-        private int decoyCD;
-        private int decoyCharge;
+        [SerializeField] private int decoyCD;
+        [SerializeField] private int decoyCharge;
         // Start is called before the first frame update
         void Start()
         {
@@ -26,12 +28,15 @@ namespace Tag
             print("Seeker spawned");
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
-            if (Input.GetButtonDown("1") && decoyCharge >= decoyCD)
+            if (Input.GetKeyDown(KeyCode.E) && decoyCharge >= decoyCD)
             {
-                
+                decoyCharge = 0;
+                CmdDecoyLight();
             }
+            if (decoyCharge != decoyCD)decoyCharge++;
+            if (decoy == null) RpcDecoy(true);
         }
 
 
@@ -49,10 +54,18 @@ namespace Tag
         {
             manager.SwapOver();
         }
-
-        public void DecoyLight()
+        [Command]
+        public void CmdDecoyLight()
         {
-            light.transform.Translate(Vector3.forward);
+            decoy = Instantiate(decoyLight, transform.position, transform.rotation);
+            NetworkServer.Spawn(decoy);
+            RpcDecoy(false);
+        }
+
+        [ClientRpc]
+        public void RpcDecoy(bool value)
+        {
+            light.enabled = value;
         }
     }
 }
