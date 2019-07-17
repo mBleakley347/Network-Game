@@ -14,6 +14,11 @@ namespace Tag
     public class SeekerScript : NetworkBehaviour
     {
         public NetManager manager;
+
+        public GameObject light;
+
+        private int decoyCD;
+        private int decoyCharge;
         // Start is called before the first frame update
         void Start()
         {
@@ -21,7 +26,14 @@ namespace Tag
             print("Seeker spawned");
         }
 
-        
+        private void Update()
+        {
+            if (Input.GetButtonDown("1") && decoyCharge >= decoyCD)
+            {
+                
+            }
+        }
+
 
         private void OnCollisionEnter(Collision other)
         {
@@ -36,6 +48,11 @@ namespace Tag
         public void CmdSwap()
         {
             manager.SwapOver();
+        }
+
+        public void DecoyLight()
+        {
+            light.transform.Translate(Vector3.forward);
         }
     }
 }

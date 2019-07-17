@@ -14,15 +14,15 @@ public class NetManager : NetworkManager
     private bool first = true;
     public GameObject seeker;
     public GameObject hider;
-    [SerializeField] private Text ipAddress;
+    public string address;
     
     private List<NetworkConnection> players = new List<NetworkConnection>();
     private T5 mapScript;
 
-    public override void Start()
+    public override void Awake()
     {
-        ipAddress.text = networkAddress;
-        base.Start();
+        address = networkAddress;
+        base.Awake();
     }
 
     public override void OnServerAddPlayer(NetworkConnection conn, AddPlayerMessage extraMessage)
