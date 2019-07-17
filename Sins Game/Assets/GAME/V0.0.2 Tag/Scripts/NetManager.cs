@@ -4,20 +4,30 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using Mirror;
+using Mirror.Websocket;
 using Tag;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NetManager : NetworkManager
 {
     private bool first = true;
     public GameObject seeker;
     public GameObject hider;
-
+    [SerializeField] private Text ipAddress;
+    
     private List<NetworkConnection> players = new List<NetworkConnection>();
     private T5 mapScript;
 
+    public override void Start()
+    {
+        ipAddress.text = networkAddress;
+        base.Start();
+    }
+
     public override void OnServerAddPlayer(NetworkConnection conn, AddPlayerMessage extraMessage)
     {
+        
         if (FindObjectOfType<Seeker>()) first = false;
         base.OnServerAddPlayer(conn, extraMessage);
         if (first)
@@ -29,14 +39,15 @@ public class NetManager : NetworkManager
         {
             SpawnHider(conn);
         }
+
         players.Add(conn);
     }
 
-    public override void OnServerRemovePlayer(NetworkConnection conn, NetworkIdentity player)
+    public override void OnServerDisconnect(NetworkConnection conn)
     {
         players.Remove(conn);
         if (conn.playerController.gameObject.GetComponent<SeekerScript>()) SwapOver();
-        base.OnServerRemovePlayer(conn, player);
+        base.OnServerDisconnect(conn);
     }
 
     public void SwapOver()
