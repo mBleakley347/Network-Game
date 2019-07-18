@@ -111,7 +111,7 @@ MonoBehaviour:
   serverOnly: 0
   localPlayerAuthority: 1
   m_AssetId: 
-  m_SceneId: 1321899559
+  m_SceneId: 0
 --- !u!114 &8863682161843588477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,5 +168,5 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.005
   m_Center: {x: 0, y: 0, z: 0}

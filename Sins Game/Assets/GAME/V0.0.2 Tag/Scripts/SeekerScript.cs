@@ -21,6 +21,9 @@ namespace Tag
 
         [SerializeField] private int decoyCD;
         [SerializeField] private int decoyCharge;
+        [SerializeField] private int sprintCD;
+        [SerializeField] private int sprintCharge;
+        
         // Start is called before the first frame update
         void Start()
         {
@@ -37,6 +40,14 @@ namespace Tag
             }
             if (decoyCharge != decoyCD)decoyCharge++;
             if (decoy == null) RpcDecoy(true);
+            
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                sprintCharge = 0;
+                Sprint();
+            }
+            if (sprintCharge != sprintCD)sprintCharge++;
+            
         }
 
 
@@ -66,6 +77,12 @@ namespace Tag
         public void RpcDecoy(bool value)
         {
             light.enabled = value;
+        }
+
+        [Command]
+        public void Sprint()
+        {
+            GetComponent<CharacterBase>().speedMultiplier = 2;
         }
     }
 }
