@@ -44,9 +44,10 @@ namespace Tag
             if (Input.GetKeyDown(KeyCode.LeftShift) && sprintCharge >= sprintCD)
             {
                 sprintCharge = 0;
-                Sprint();
+                CmdSprint();
             }
-            if (sprintCharge != sprintCD)sprintCharge++;
+            if (sprintCharge >= sprintCD)sprintCharge++;
+            //sprintCharge+=Time.deltaTime; use this instead of sprintCharge++
             if (sprintCharge >= 200)
             {
                 GetComponent<CharacterBase>().speedMultiplier = 1;
@@ -84,7 +85,7 @@ namespace Tag
         }
 
         [Command]
-        public void Sprint()
+        public void CmdSprint()
         {
             GetComponent<CharacterBase>().speedMultiplier = 2;
         }
