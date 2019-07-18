@@ -41,12 +41,16 @@ namespace Tag
             if (decoyCharge != decoyCD)decoyCharge++;
             if (decoy == null) RpcDecoy(true);
             
-            if (Input.GetKeyDown(KeyCode.LeftShift))
+            if (Input.GetKeyDown(KeyCode.LeftShift) && sprintCharge >= sprintCD)
             {
                 sprintCharge = 0;
                 Sprint();
             }
             if (sprintCharge != sprintCD)sprintCharge++;
+            if (sprintCharge >= 200)
+            {
+                GetComponent<CharacterBase>().speedMultiplier = 1;
+            }
             
         }
 
