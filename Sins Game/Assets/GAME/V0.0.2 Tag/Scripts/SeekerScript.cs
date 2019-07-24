@@ -33,14 +33,19 @@ namespace Tag
 
         private void FixedUpdate()
         {
+            if (!localPlayerAuthority)
+            {
+                if (decoy == null) RpcDecoy(true);
+                return;
+            }
             if (Input.GetKeyDown(KeyCode.E) && decoyCharge >= decoyCD)
             {
                 decoyCharge = 0;
                 CmdDecoyLight();
             }
             if (decoyCharge != decoyCD)decoyCharge++;
-            if (decoy == null) RpcDecoy(true);
             
+
             if (Input.GetKeyDown(KeyCode.LeftShift) && sprintCharge >= sprintCD)
             {
                 sprintCharge = 0;
@@ -52,7 +57,6 @@ namespace Tag
             {
                 GetComponent<CharacterBase>().speedMultiplier = 1;
             }
-            
         }
 
 
