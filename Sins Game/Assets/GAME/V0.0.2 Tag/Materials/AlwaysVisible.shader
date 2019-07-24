@@ -12,6 +12,12 @@
 
         Pass
         {
+        
+            Cull Off
+            ZWrite Off //Control whether pixels from this object are written to the depth buffer (default in On)    
+                        //If you're drawing solid objects, leave this on. If you're drawing semi transparent effects, switch to ZWrite Off.   
+            ZTest Always 
+        
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
