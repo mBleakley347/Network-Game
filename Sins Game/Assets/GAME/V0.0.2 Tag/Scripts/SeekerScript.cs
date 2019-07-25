@@ -35,13 +35,13 @@ namespace Tag
         {
             if (!localPlayerAuthority)
             {
-                if (decoy == null) RpcDecoy(true);
+                if (decoy == null) CmdDecoyLight(true);
                 return;
             }
             if (Input.GetKeyDown(KeyCode.E) && decoyCharge >= decoyCD)
             {
                 decoyCharge = 0;
-                CmdDecoyLight();
+                CmdDecoyLight(false);
             }
             if (decoyCharge != decoyCD)decoyCharge++;
             
@@ -75,11 +75,16 @@ namespace Tag
             manager.SwapOver();
         }
         [Command]
-        public void CmdDecoyLight()
+        public void CmdDecoyLight(bool value)
         {
-            decoy = Instantiate(decoyLight, transform.position, transform.rotation);
-            NetworkServer.Spawn(decoy);
-            RpcDecoy(false);
+            if (!value)
+            {
+                decoy = Instantiate(decoyLight, transform.position, transform.rotation);
+                NetworkServer.Spawn(decoy);
+            }
+
+            light.enabled = value;
+            RpcDecoy(value);
         }
 
         [ClientRpc]

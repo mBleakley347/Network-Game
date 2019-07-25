@@ -236,8 +236,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   localPlayerAuthority: 1
-  m_AssetId: 
-  m_SceneId: 3413227687
+  m_AssetId: 261e0c5416a7533478ddf053303a7c30
+  m_SceneId: 0
 --- !u!114 &323599788429239541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,7 +360,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 6ad8ccb259741314099de5268e82a42b, type: 2}
+      objectReference: {fileID: 2100000, guid: 9a1385a1cb5728645962910048ccdf54, type: 2}
     - target: {fileID: 2471735130843699033, guid: 8d942067c5493034f84b83cc6c905957,
         type: 3}
       propertyPath: m_ReceiveShadows

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 namespace Tag
 {
@@ -17,6 +18,8 @@ namespace Tag
         [SerializeField] private int sprintCD;
         [SerializeField] private int sprintCharge;
         private float speed;
+
+        private bool invisActive = false;
         // Start is called before the first frame update
         void Start()
         {
@@ -27,30 +30,12 @@ namespace Tag
             print("hider spawned");
         }
 
-        public void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Q) && invisCharge >= invisCD)
-            {
-                if (isLocalPlayer)
-                {
-                    CmdInvisible(false);
-                    _characterBase.speedMultiplier /= 2;
-                }
-            }
-
-            if (invisCharge >= invisCD / invisDurationMult)
-            {
-                if (isLocalPlayer)
-                {
-                    CmdInvisible(true);
-                    _characterBase.speedMultiplier = speed;
-                }
-            }
-            
-        }
+       
 
         public void FixedUpdate()
         {
+            if (!isLocalPlayer) return;
+            
             if (Input.GetKeyDown(KeyCode.LeftShift) && sprintCharge >= sprintCD)
             {
                 sprintCharge = 0;
@@ -62,6 +47,25 @@ namespace Tag
             {
                 GetComponent<CharacterBase>().speedMultiplier = 1;
             }
+            if (Input.GetKeyDown(KeyCode.Q) && invisCharge >= invisCD)
+            {
+                
+                    CmdInvisible(false);
+                    _characterBase.speedMultiplier /= 2;
+                    invisActive = true;
+                    invisCharge = 0;
+            }
+
+            if (invisCharge >= invisCD / invisDurationMult && invisActive)
+            {
+                
+                    CmdInvisible(true);
+                    _characterBase.speedMultiplier = speed;
+                    invisActive = false;
+            }
+
+            invisCharge++;
+            _renderer.enabled = false;
         }
 
         /*
@@ -79,14 +83,13 @@ namespace Tag
         public void CmdInvisible(bool value)
         {
             Debug.Log("Invis");
-            
-           RpcInvisible(value);
+            RpcInvisible(value);
         }
 
         [ClientRpc]
         public void RpcInvisible(bool value)
         {
-            _renderer.enabled = false;
+            _renderer.enabled = value;
         }
     }
 }

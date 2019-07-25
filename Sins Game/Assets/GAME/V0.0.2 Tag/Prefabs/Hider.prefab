@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5534113717613366105}
   - component: {fileID: 8661698735171137153}
   - component: {fileID: 540792373753967460}
+  - component: {fileID: 2269125458400908754}
   m_Layer: 0
   m_Name: Hider
   m_TagString: Player
@@ -144,7 +145,7 @@ MonoBehaviour:
   serverOnly: 0
   localPlayerAuthority: 1
   m_AssetId: 
-  m_SceneId: 4234674134
+  m_SceneId: 3777914495
 --- !u!114 &8661698735171137153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,8 +174,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncInterval: 0.1
   manager: {fileID: 0}
-  invisCD: 0
+  invisCD: 1000
   invisCharge: 0
-  invisDurationMult: 0
+  invisDurationMult: 3
   sprintCD: 400
   sprintCharge: 0
+--- !u!114 &2269125458400908754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6187216541016296539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: 3b90f9a68e967aa4aa56f942071cc84c, type: 2}
+  isGlobal: 0
+  blendDistance: 0
+  weight: 1
+  priority: 0
