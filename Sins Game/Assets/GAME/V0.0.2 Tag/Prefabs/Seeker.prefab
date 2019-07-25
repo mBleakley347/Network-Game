@@ -236,13 +236,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   localPlayerAuthority: 1
-<<<<<<< Updated upstream
   m_AssetId: 
   m_SceneId: 3413227687
-=======
-  m_AssetId: c9e57565e48d409428708786ee07c9db
-  m_SceneId: 0
->>>>>>> Stashed changes
 --- !u!114 &323599788429239541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,7 +256,7 @@ MonoBehaviour:
   decoyLight: {fileID: 1955464534789211020, guid: c9e57565e48d409428708786ee07c9db,
     type: 3}
   decoy: {fileID: 0}
-  decoyCD: 400
+  decoyCD: 100
   decoyCharge: 0
   sprintCD: 300
   sprintCharge: 0
