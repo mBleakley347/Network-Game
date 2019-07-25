@@ -55,7 +55,7 @@ namespace Tag
             //sprintCharge+=Time.deltaTime; use this instead of sprintCharge++
             if (sprintCharge >= (sprintCD / 2))
             {
-                GetComponent<CharacterBase>().speedMultiplier = 1;
+                GetComponent<CharacterBase>().speedMultiplier = 2;
             }
         }
 
