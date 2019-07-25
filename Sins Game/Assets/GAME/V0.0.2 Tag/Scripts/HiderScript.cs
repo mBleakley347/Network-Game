@@ -15,6 +15,8 @@ namespace Tag
         [SerializeField] private float invisCD;
         [SerializeField] private float invisCharge;
         [SerializeField] private int invisDurationMult; 
+        [SerializeField] private int sprintCD;
+        [SerializeField] private int sprintCharge;
         private float speed;
         // Start is called before the first frame update
         void Start()
@@ -48,16 +50,31 @@ namespace Tag
             
         }
 
-        /*
-        private void OnCollisionEnter(Collision other)
+        public void FixedUpdate()
         {
-            if (!isLocalPlayer) return;
-            if (other.gameObject.tag.Equals("Player"))
+            if (Input.GetKeyDown(KeyCode.LeftShift) && sprintCharge >= sprintCD)
             {
-                manager.SwapOver();
+                sprintCharge = 0;
+                GetComponent<CharacterBase>().speedMultiplier = GetComponent<CharacterBase>().speedMultiplier * 2;
+            }
+            if (sprintCharge < sprintCD)sprintCharge++;
+            //sprintCharge+=Time.deltaTime; use this instead of sprintCharge++
+            if (sprintCharge >= (sprintCD / 2))
+            {
+                GetComponent<CharacterBase>().speedMultiplier = 1;
             }
         }
-        */
+
+        /*
+            private void OnCollisionEnter(Collision other)
+            {
+                if (!isLocalPlayer) return;
+                if (other.gameObject.tag.Equals("Player"))
+                {
+                    manager.SwapOver();
+                }
+            }
+            */
 
         [Command]
         public void CmdInvisible(bool value)

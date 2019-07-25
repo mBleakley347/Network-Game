@@ -49,7 +49,7 @@ namespace Tag
             if (Input.GetKeyDown(KeyCode.LeftShift) && sprintCharge >= sprintCD)
             {
                 sprintCharge = 0;
-                GetComponent<CharacterBase>().speedMultiplier = 2;
+                GetComponent<CharacterBase>().speedMultiplier = GetComponent<CharacterBase>().speedMultiplier * 2;
             }
             if (sprintCharge < sprintCD)sprintCharge++;
             //sprintCharge+=Time.deltaTime; use this instead of sprintCharge++

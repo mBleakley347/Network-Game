@@ -144,7 +144,7 @@ MonoBehaviour:
   serverOnly: 0
   localPlayerAuthority: 1
   m_AssetId: 
-  m_SceneId: 1910917936
+  m_SceneId: 4234674134
 --- !u!114 &8661698735171137153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,3 +176,5 @@ MonoBehaviour:
   invisCD: 0
   invisCharge: 0
   invisDurationMult: 0
+  sprintCD: 400
+  sprintCharge: 0

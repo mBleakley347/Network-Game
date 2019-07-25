@@ -219,7 +219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncInterval: 0.1
   rb: {fileID: 920379041016952086}
-  speedMultiplier: 1.5
+  speedMultiplier: 2
   rotationSpeed: 1
   light: {fileID: 1955464534789211020, guid: c9e57565e48d409428708786ee07c9db, type: 3}
 --- !u!114 &8852112289652849079
@@ -236,8 +236,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   localPlayerAuthority: 1
-  m_AssetId: 261e0c5416a7533478ddf053303a7c30
-  m_SceneId: 0
+  m_AssetId: 
+  m_SceneId: 3413227687
 --- !u!114 &323599788429239541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,7 +258,7 @@ MonoBehaviour:
   decoy: {fileID: 0}
   decoyCD: 100
   decoyCharge: 0
-  sprintCD: 20
+  sprintCD: 300
   sprintCharge: 0
 --- !u!114 &5629661417184812143
 MonoBehaviour:
@@ -281,6 +281,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4206261903999422071}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 8d942067c5493034f84b83cc6c905957,
+        type: 3}
+      propertyPath: m_Name
+      value: Sin Model
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 8d942067c5493034f84b83cc6c905957,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -350,11 +355,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 64.913
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 8d942067c5493034f84b83cc6c905957,
-        type: 3}
-      propertyPath: m_Name
-      value: Sin Model
       objectReference: {fileID: 0}
     - target: {fileID: 2471735130843699033, guid: 8d942067c5493034f84b83cc6c905957,
         type: 3}
