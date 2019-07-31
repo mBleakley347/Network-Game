@@ -18,6 +18,7 @@ namespace Tag
         [SerializeField] private int sprintCD;
         [SerializeField] private int sprintCharge;
         private float speed;
+        [SerializeField] private Camera cam;
 
         private bool invisActive = false;
         // Start is called before the first frame update
@@ -27,6 +28,7 @@ namespace Tag
             _characterBase = GetComponent<CharacterBase>();
             speed = _characterBase.speedMultiplier;
             if (!isLocalPlayer) return;
+            cam.enabled = true;
             print("hider spawned");
         }
 

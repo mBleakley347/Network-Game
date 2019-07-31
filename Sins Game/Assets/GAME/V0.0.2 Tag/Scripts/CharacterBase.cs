@@ -16,6 +16,7 @@ namespace Tag
         [SerializeField] public float speedMultiplier;
         [SerializeField] private float rotationSpeed;
         [SerializeField] private GameObject light;
+        
         // Start is called before the first frame update
         void Start()
         {

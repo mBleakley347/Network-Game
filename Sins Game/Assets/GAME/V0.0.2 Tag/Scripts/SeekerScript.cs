@@ -35,28 +35,16 @@ namespace Tag
         {
             if (!localPlayerAuthority)
             {
-                if (decoy == null) CmdDecoyLight(true);
+                
                 return;
             }
+            if (decoy == null) CmdDecoyLight(true);
             if (Input.GetKeyDown(KeyCode.E) && decoyCharge >= decoyCD)
             {
                 decoyCharge = 0;
                 CmdDecoyLight(false);
             }
             if (decoyCharge != decoyCD)decoyCharge++;
-            
-
-            if (Input.GetKeyDown(KeyCode.LeftShift) && sprintCharge >= sprintCD)
-            {
-                sprintCharge = 0;
-                GetComponent<CharacterBase>().speedMultiplier = GetComponent<CharacterBase>().speedMultiplier * 2;
-            }
-            if (sprintCharge < sprintCD)sprintCharge++;
-            //sprintCharge+=Time.deltaTime; use this instead of sprintCharge++
-            if (sprintCharge >= (sprintCD / 2))
-            {
-                GetComponent<CharacterBase>().speedMultiplier = 2;
-            }
         }
 
 

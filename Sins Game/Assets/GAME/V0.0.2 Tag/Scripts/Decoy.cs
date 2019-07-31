@@ -13,6 +13,6 @@ public class Decoy : MonoBehaviour
     {
         if (life > 0)rb.AddRelativeForce(Vector3.forward * speed,ForceMode.VelocityChange);
         else Destroy(gameObject);
-        life -= Time.deltaTime;
+        life--;
     }
 }
