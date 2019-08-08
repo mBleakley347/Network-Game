@@ -110,8 +110,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   localPlayerAuthority: 1
-  m_AssetId: 
-  m_SceneId: 2231383164
+  m_AssetId: c9e57565e48d409428708786ee07c9db
+  m_SceneId: 0
 --- !u!114 &8863682161843588477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,7 +155,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!135 &8726401793582012093
 SphereCollider:
