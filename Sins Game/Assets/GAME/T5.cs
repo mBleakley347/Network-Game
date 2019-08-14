@@ -1,9 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using Mirror;
+using Mirror.Websocket;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-public class T5 : MonoBehaviour
+public class T5 : NetworkBehaviour
 {
     [System.Serializable]
     public class Wave
@@ -24,28 +28,54 @@ public class T5 : MonoBehaviour
     public float power;
     public float terrace;
 
-    public float[,] HeightMap;
-    private float Rng;
+    public float[,] heightMap;
+    public float rng;
 
     // Use this for initialization
     void Start()
     {
         offSetx = -gameObject.transform.position.x;
         offSetz = -gameObject.transform.position.z;
-        Rng = Random.Range(0f, 10000f);
         Thread newThread = new Thread(GenerateNoiseMap);
         newThread.Start();
+
         //float [,] HeightMap = GenerateNoiseMap(x, z, Random.Range(0f, 10000f),waves);
+
+    }
+
+
+    /*[Command]
+    public void CmdChangeMap()
+    {
         
+        gameObject.GetComponent<Terrain>().terrainData.SetHeights(0, 0, heightMap);
+        RpcChangeMap(rng);
+        Start();
+    }*/
+
+    [ClientRpc]
+    public void RpcChangeMap(float _Rrg)
+    {
+        rng = _Rrg;
+        gameObject.GetComponent<Terrain>().terrainData.SetHeights(0, 0, heightMap);
+        Start();
     }
 
     public void ChangeMap()
     {
-        gameObject.GetComponent<Terrain>().terrainData.SetHeights(0, 0, HeightMap);
-        Start();
+        if (isServer)
+        {
+            rng = Random.Range(0f, 10000f);
+            //gameObject.GetComponent<Terrain>().terrainData.SetHeights(0, 0, heightMap);
+            RpcChangeMap(rng);
+        }
     }
-
-
+    
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L)) ChangeMap();
+        
+    }
 
 
     public void GenerateNoiseMap( )
@@ -63,8 +93,8 @@ public class T5 : MonoBehaviour
             {
                 
                 
-                float tempZ = (z + offSetz + Rng) / scale;
-                float tempX = (x + offSetx + Rng) / scale;
+                float tempZ = (z + offSetz + rng) / scale;
+                float tempX = (x + offSetx + rng) / scale;
 
                 float noise = 0f;
                 float normalization = 0f;
@@ -93,7 +123,7 @@ public class T5 : MonoBehaviour
             }
         }
 
-        HeightMap = noiseMap;
+        heightMap = noiseMap;
     }
 
    

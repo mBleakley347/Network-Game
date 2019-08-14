@@ -301,7 +301,6 @@ MonoBehaviour:
   rb: {fileID: 920379041016952086}
   speedMultiplier: 2
   rotationSpeed: 0.7
-  light: {fileID: 1955464534789211020, guid: c9e57565e48d409428708786ee07c9db, type: 3}
 --- !u!114 &8852112289652849079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,14 +331,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncInterval: 0.1
   manager: {fileID: 0}
-  light: {fileID: 4234141319533812415}
+  personalLight: {fileID: 4234141319533812415}
   decoyLight: {fileID: 1955464534789211020, guid: c9e57565e48d409428708786ee07c9db,
     type: 3}
   decoy: {fileID: 0}
   decoyCD: 500
   decoyCharge: 0
-  sprintCD: 300
-  sprintCharge: 0
 --- !u!114 &5629661417184812143
 MonoBehaviour:
   m_ObjectHideFlags: 0
