@@ -53,8 +53,12 @@ public class NetManager : NetworkManager
 
     public void SwapOver()
     {
-        if (FindObjectOfType<T5>()) mapScript = FindObjectOfType<T5>();
-        mapScript.ChangeMap();
+        if (FindObjectOfType<T5>())
+        {
+            mapScript = FindObjectOfType<T5>();
+            mapScript.ChangeMap();
+        }
+
         int i;
         for (i = players.Count - 1; i > -1; i--)
         {

@@ -336,7 +336,7 @@ MonoBehaviour:
   decoyLight: {fileID: 1955464534789211020, guid: c9e57565e48d409428708786ee07c9db,
     type: 3}
   decoy: {fileID: 0}
-  decoyCD: 200
+  decoyCD: 500
   decoyCharge: 0
   sprintCD: 300
   sprintCharge: 0
@@ -374,6 +374,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4206261903999422071}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 8d942067c5493034f84b83cc6c905957,
+        type: 3}
+      propertyPath: m_Name
+      value: Sin Model
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 8d942067c5493034f84b83cc6c905957,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -443,11 +448,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 64.913
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 8d942067c5493034f84b83cc6c905957,
-        type: 3}
-      propertyPath: m_Name
-      value: Sin Model
       objectReference: {fileID: 0}
     - target: {fileID: 2471735130843699033, guid: 8d942067c5493034f84b83cc6c905957,
         type: 3}
