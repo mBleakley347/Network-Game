@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private Text ipAddress;
+    [SerializeField] private Text ipAddress = null;
     [SerializeField] private NetManager netManager;
     
     // Start is called before the first frame update

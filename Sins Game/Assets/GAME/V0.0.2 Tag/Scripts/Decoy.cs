@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Decoy : MonoBehaviour
 {
-    [SerializeField] private float life;
-    [SerializeField] private int speed;
+    [SerializeField] private float life = 0f;
+    [SerializeField] private int speed = 0;
 
-    [SerializeField] private Rigidbody rb;
+    [SerializeField] private Rigidbody rb = null;
     // Update is called once per frame
     void FixedUpdate()
     {

@@ -12,13 +12,13 @@ namespace Tag
         public NetManager manager;
         private MeshRenderer _renderer;
         private CharacterBase _characterBase;
-        [SerializeField] private float invisCD;
-        [SerializeField] private float invisCharge;
-        [SerializeField] private int invisDurationMult; 
-        [SerializeField] private int sprintCD;
-        [SerializeField] private int sprintCharge;
-        private float speed;
-        [SerializeField] private Camera cam;
+        [SerializeField] private float invisCD = 0f;
+        [SerializeField] private float invisCharge = 0f;
+        [SerializeField] private int invisDurationMult = 0; 
+        [SerializeField] private int sprintCD = 0;
+        [SerializeField] private int sprintCharge = 0;
+        private float speed = 0;
+        [SerializeField] private Camera cam = null;
 
         private bool invisActive = false;
         // Start is called before the first frame update

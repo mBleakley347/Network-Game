@@ -12,10 +12,9 @@ namespace Tag
      */
     public class CharacterBase : NetworkBehaviour
     {
-        [SerializeField] private Rigidbody rb;
-        [SerializeField] public float speedMultiplier;
-        [SerializeField] private float rotationSpeed;
-        [SerializeField] private GameObject light;
+        [SerializeField] private Rigidbody rb = null;
+        [SerializeField] public float speedMultiplier = 0f;
+        [SerializeField] private float rotationSpeed = 0f;
         
         // Start is called before the first frame update
         void Start()

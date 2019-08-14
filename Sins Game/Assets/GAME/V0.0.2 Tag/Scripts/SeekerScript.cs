@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Mirror;
 using Mirror.Websocket;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Tag
 {
@@ -15,15 +16,13 @@ namespace Tag
     {
         public NetManager manager;
 
-        public Light light;
+        public Light personalLight;
         public GameObject decoyLight;
         public GameObject decoy;
 
-        [SerializeField] private int decoyCD;
-        [SerializeField] private int decoyCharge;
-        [SerializeField] private int sprintCD;
-        [SerializeField] private int sprintCharge;
-        
+        [SerializeField] private int decoyCD = 0;
+        [SerializeField] private int decoyCharge = 0;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -71,20 +70,14 @@ namespace Tag
                 NetworkServer.Spawn(decoy);
             }
 
-            light.enabled = value;
+            personalLight.enabled = value;
             RpcDecoy(value);
         }
 
         [ClientRpc]
         public void RpcDecoy(bool value)
         {
-            light.enabled = value;
-        }
-
-        [Command]
-        public void CmdSprint()
-        {
-            GetComponent<CharacterBase>().speedMultiplier = 2;
+            personalLight.enabled = value;
         }
     }
 }
