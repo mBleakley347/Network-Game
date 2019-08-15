@@ -97,7 +97,7 @@ LightmapSettings:
     m_ShowResolutionOverlay: 1
     m_ExportTrainingData: 0
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -337,7 +337,7 @@ TerrainCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 81171438}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: f47af2233dbcb394e9b7ff4eea6abbbe, type: 2}
   m_Enabled: 1
   m_TerrainData: {fileID: 15600000, guid: a281b361c81bd6e4fa89845939c33163, type: 2}
   m_EnableTreeColliders: 1

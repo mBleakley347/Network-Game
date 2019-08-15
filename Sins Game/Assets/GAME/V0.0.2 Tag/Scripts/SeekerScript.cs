@@ -32,13 +32,13 @@ namespace Tag
 
         private void FixedUpdate()
         {
-            if (!localPlayerAuthority)
+            if (!isLocalPlayer)
             {
                 
                 return;
             }
             if (decoy == null) CmdDecoyLight(true);
-            if (Input.GetKeyDown(KeyCode.E) && decoyCharge >= decoyCD)
+            if (Input.GetKeyDown(KeyCode.Space) && decoyCharge >= decoyCD)
             {
                 decoyCharge = 0;
                 CmdDecoyLight(false);

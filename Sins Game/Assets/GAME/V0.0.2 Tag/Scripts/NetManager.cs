@@ -8,6 +8,7 @@ using Mirror;
 using Mirror.Websocket;
 using Tag;
 using UnityEngine;
+using UnityEngine.Networking.Types;
 using UnityEngine.UI;
 
 public class NetManager : NetworkManager
@@ -42,6 +43,8 @@ public class NetManager : NetworkManager
         }
 
         players.Add(conn);
+        mapScript = FindObjectOfType<T5>();
+        mapScript.CmdSendMap();
     }
 
     public override void OnServerDisconnect(NetworkConnection conn)

@@ -49,7 +49,7 @@ namespace Tag
             {
                 GetComponent<CharacterBase>().speedMultiplier = 1;
             }
-            if (Input.GetKeyDown(KeyCode.Q) && invisCharge >= invisCD)
+            if (Input.GetKeyDown(KeyCode.Space) && invisCharge >= invisCD)
             {
                 
                     CmdInvisible(false);

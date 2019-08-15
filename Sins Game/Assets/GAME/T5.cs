@@ -30,6 +30,7 @@ public class T5 : NetworkBehaviour
 
     public float[,] heightMap;
     public float rng;
+    public float lastRng;
 
     // Use this for initialization
     void Start()
@@ -44,27 +45,40 @@ public class T5 : NetworkBehaviour
     }
 
 
-    /*[Command]
-    public void CmdChangeMap()
+    [Command]
+    public void CmdSendMap()
+    {
+        if (isServer) RpcSendMap(rng,lastRng);
+    }
+    
+    [ClientRpc]
+    public void RpcChangeMap(float _Rng)
     {
         
-        gameObject.GetComponent<Terrain>().terrainData.SetHeights(0, 0, heightMap);
-        RpcChangeMap(rng);
-        Start();
-    }*/
+            lastRng = rng;
+            rng = _Rng;
+            gameObject.GetComponent<Terrain>().terrainData.SetHeights(0, 0, heightMap);
+            Start();
+        
+    }
 
     [ClientRpc]
-    public void RpcChangeMap(float _Rrg)
+    public void RpcSendMap(float _Rng, float _LastRng)
     {
-        rng = _Rrg;
-        gameObject.GetComponent<Terrain>().terrainData.SetHeights(0, 0, heightMap);
-        Start();
+        
+            lastRng = _LastRng;
+            rng = _Rng;
+            GenerateNoiseMap(lastRng);
+            gameObject.GetComponent<Terrain>().terrainData.SetHeights(0, 0, heightMap);
+            Start();
+        
     }
 
     public void ChangeMap()
     {
         if (isServer)
         {
+            lastRng = rng;
             rng = Random.Range(0f, 10000f);
             //gameObject.GetComponent<Terrain>().terrainData.SetHeights(0, 0, heightMap);
             RpcChangeMap(rng);
@@ -78,7 +92,7 @@ public class T5 : NetworkBehaviour
     }
 
 
-    public void GenerateNoiseMap( )
+    public void GenerateNoiseMap()
     {
         int mapDepth = x;
         int mapWidth = z;
@@ -126,6 +140,53 @@ public class T5 : NetworkBehaviour
         heightMap = noiseMap;
     }
 
+    public void GenerateNoiseMap( float Rng)
+    {
+        int mapDepth = x;
+        int mapWidth = z;
+        
+        
+        
+        float[,] noiseMap = new float[mapDepth, mapWidth];
+        temp = scale * 2 / mapDepth;
+        for (int z = 0; z < mapDepth; z++)
+        {
+            for (int x = 0; x < mapWidth; x++)
+            {
+                
+                
+                float tempZ = (z + offSetz + Rng) / scale;
+                float tempX = (x + offSetx + Rng) / scale;
+
+                float noise = 0f;
+                float normalization = 0f;
+                foreach (Wave wave in waves)
+                {
+                    noise += wave.amplitude * Mathf.PerlinNoise(wave.frequency * tempX, wave.frequency * tempZ);
+                    normalization += wave.amplitude;
+                }
+                noise /= normalization;
+
+                if (steep)
+                {
+                    //make mountains steeper
+                    noiseMap[z, x] = Mathf.Pow(noise, power);
+                }
+                else
+                {
+                    //make terraces
+                    noiseMap[z, x] = Mathf.Round(noise * terrace) / terrace;
+                }
+
+                if (x < 10 || z < 10)
+                {
+                    noiseMap[z, x] = 0;
+                }
+            }
+        }
+
+        heightMap = noiseMap;
+    }
    
     /*
     public void TerrainType(Noise)
