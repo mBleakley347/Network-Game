@@ -20,14 +20,27 @@ namespace Tag
         public GameObject decoyLight;
         public GameObject decoy;
 
-        [SerializeField] private int decoyCD = 0;
-        [SerializeField] private int decoyCharge = 0;
+        
+        [SerializeField] private float abilityOneCooldown = 0;
+        [SerializeField] private float abilityOneCharge = 0;
+        [SerializeField] private float abilityTwoCooldown = 0;
+        [SerializeField] private float abilityTwoCharge = 0;
+
+        [SerializeField] private CooldownManager abilityOne;
+        [SerializeField] private CooldownManager abilityTwo;
+
 
         // Start is called before the first frame update
         void Start()
         {
             if (!isLocalPlayer) return;
             print("Seeker spawned");
+            abilityOne = GameObject.Find("AbilityOne").GetComponent<CooldownManager>();
+            abilityTwo = GameObject.Find("AbilityTwo").GetComponent<CooldownManager>();
+
+            abilityOneCharge = abilityOneCooldown;
+            abilityTwoCharge = abilityTwoCooldown;
+
         }
 
         private void FixedUpdate()
@@ -38,12 +51,30 @@ namespace Tag
                 return;
             }
             if (decoy == null) CmdDecoyLight(true);
-            if (Input.GetKeyDown(KeyCode.Space) && decoyCharge >= decoyCD)
+            if (Input.GetKeyDown(KeyCode.Space) && abilityOneCharge >= abilityOneCooldown)
             {
-                decoyCharge = 0;
+                abilityOneCharge = 0;
                 CmdDecoyLight(false);
+                abilityOne.StartCooldown(abilityOneCooldown);
+                
             }
-            if (decoyCharge != decoyCD)decoyCharge++;
+            if (abilityOneCharge < abilityOneCooldown) abilityOneCharge+=Time.deltaTime;
+            
+            //dhjcbdc
+            if (Input.GetKeyDown(KeyCode.LeftShift) && abilityTwoCharge >= abilityTwoCooldown)
+            {
+                abilityTwoCharge = 0;
+                //make another ability here where commented out code is below
+                GetComponent<CharacterBase>().speedMultiplier = GetComponent<CharacterBase>().speedMultiplier * 2;
+                abilityTwo.StartCooldown(abilityTwoCooldown);
+                
+                
+            }
+            if (abilityTwoCharge >= (abilityTwoCooldown / 2))
+            {
+                GetComponent<CharacterBase>().speedMultiplier = 1;
+            }
+            if (abilityTwoCharge < abilityTwoCooldown) abilityTwoCharge+=Time.deltaTime;
         }
 
 

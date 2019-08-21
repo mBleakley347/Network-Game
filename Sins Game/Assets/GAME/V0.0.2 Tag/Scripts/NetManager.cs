@@ -91,6 +91,7 @@ public class NetManager : NetworkManager
         Destroy(conn.playerController.gameObject);
         NetworkServer.ReplacePlayerForConnection(conn,temp);
         temp.GetComponent<SeekerScript>().manager = this;
+        
     }
 
     private void SpawnHider(NetworkConnection conn)

@@ -315,7 +315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   localPlayerAuthority: 1
-  m_AssetId: 261e0c5416a7533478ddf053303a7c30
+  m_AssetId: 
   m_SceneId: 0
 --- !u!114 &323599788429239541
 MonoBehaviour:
@@ -335,8 +335,12 @@ MonoBehaviour:
   decoyLight: {fileID: 1955464534789211020, guid: c9e57565e48d409428708786ee07c9db,
     type: 3}
   decoy: {fileID: 0}
-  decoyCD: 500
-  decoyCharge: 0
+  abilityOneCooldown: 8
+  abilityOneCharge: 0
+  abilityTwoCooldown: 4
+  abilityTwoCharge: 0
+  abilityOne: {fileID: 0}
+  abilityTwo: {fileID: 0}
 --- !u!114 &5629661417184812143
 MonoBehaviour:
   m_ObjectHideFlags: 0
