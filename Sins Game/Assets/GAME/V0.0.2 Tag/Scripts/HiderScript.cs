@@ -20,6 +20,8 @@ namespace Tag
         private float speed = 0;
         [SerializeField] private Camera cam = null;
 
+        [SerializeField] private PostProcessVolume postProcesser;
+
         private bool invisActive = false;
         // Start is called before the first frame update
         void Start()
@@ -29,6 +31,7 @@ namespace Tag
             speed = _characterBase.speedMultiplier;
             if (!isLocalPlayer) return;
             cam.enabled = true;
+            postProcesser.enabled = false;
             print("hider spawned");
         }
 
@@ -49,21 +52,22 @@ namespace Tag
             {
                 GetComponent<CharacterBase>().speedMultiplier = 1;
             }
+
             if (Input.GetKeyDown(KeyCode.Space) && invisCharge >= invisCD)
             {
-                
-                    CmdInvisible(false);
-                    _characterBase.speedMultiplier /= 2;
-                    invisActive = true;
-                    invisCharge = 0;
+                CmdInvisible(false);
+                _characterBase.speedMultiplier /= 2;
+                invisActive = true;
+                invisCharge = 0;
+                postProcesser.enabled = true;
             }
 
             if (invisCharge >= invisCD / invisDurationMult && invisActive)
             {
-                
-                    CmdInvisible(true);
-                    _characterBase.speedMultiplier = speed;
-                    invisActive = false;
+                CmdInvisible(true);
+                _characterBase.speedMultiplier = speed;
+                invisActive = false;
+                postProcesser.enabled = false;
             }
 
             invisCharge++;

@@ -118,7 +118,6 @@ MonoBehaviour:
   rb: {fileID: 4238395208474101752}
   speedMultiplier: 1
   rotationSpeed: 0.7
-  light: {fileID: 1955464534789211020, guid: c9e57565e48d409428708786ee07c9db, type: 3}
 --- !u!114 &5534113717613366105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,8 +132,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   localPlayerAuthority: 1
-  m_AssetId: 45502ee5e735e514ea77f4db3721c3db
-  m_SceneId: 0
+  m_AssetId: 
+  m_SceneId: 2196276157
 --- !u!114 &8661698735171137153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,6 +168,7 @@ MonoBehaviour:
   sprintCD: 400
   sprintCharge: 0
   cam: {fileID: 2780590448293258086}
+  postProcesser: {fileID: 2269125458400908754}
 --- !u!114 &2269125458400908754
 MonoBehaviour:
   m_ObjectHideFlags: 0

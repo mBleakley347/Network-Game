@@ -463,7 +463,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'The Demon is after you hide as best you can or risk Capture.
+  m_Text: 'The Demon is after you hide as best you can or risk Capture, unless of
+    course you are the demon then Happy Hunting.
 
 
     Controls:
