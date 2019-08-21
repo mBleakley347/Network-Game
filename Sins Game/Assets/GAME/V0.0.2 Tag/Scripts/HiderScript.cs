@@ -12,11 +12,15 @@ namespace Tag
         public NetManager manager;
         private MeshRenderer _renderer;
         private CharacterBase _characterBase;
-        [SerializeField] private float invisCD = 0f;
-        [SerializeField] private float invisCharge = 0f;
+        [SerializeField] private float abilityOneCooldown = 0f;
+        [SerializeField] private float abilityOneCharge = 0f;
         [SerializeField] private int invisDurationMult = 0; 
         [SerializeField] private int sprintCD = 0;
-        [SerializeField] private int sprintCharge = 0;
+        [SerializeField] private float abilityTwoCooldown = 0;
+        [SerializeField] private float abilityTwoCharge = 0;
+        [SerializeField] private CooldownManager abilityOne;
+        [SerializeField] private CooldownManager abilityTwo;
+
         private float speed = 0;
         [SerializeField] private Camera cam = null;
 
@@ -33,6 +37,11 @@ namespace Tag
             cam.enabled = true;
             postProcesser.enabled = false;
             print("hider spawned");
+            abilityOne = GameObject.Find("AbilityOne").GetComponent<CooldownManager>();
+            abilityTwo = GameObject.Find("AbilityTwo").GetComponent<CooldownManager>();
+
+            abilityOneCharge = abilityOneCooldown;
+            abilityTwoCharge = abilityTwoCooldown;
         }
 
        
@@ -41,28 +50,32 @@ namespace Tag
         {
             if (!isLocalPlayer) return;
             
-            if (Input.GetKeyDown(KeyCode.LeftShift) && sprintCharge >= sprintCD)
+            if (Input.GetKeyDown(KeyCode.LeftShift) && abilityTwoCharge >= abilityTwoCooldown)
             {
-                sprintCharge = 0;
+                abilityTwoCharge = 0;
+                //make another ability here where commented out code is below
                 GetComponent<CharacterBase>().speedMultiplier = GetComponent<CharacterBase>().speedMultiplier * 2;
+                abilityTwo.StartCooldown(abilityTwoCooldown);
+                
+                
             }
-            if (sprintCharge < sprintCD)sprintCharge++;
-            //sprintCharge+=Time.deltaTime; use this instead of sprintCharge++
-            if (sprintCharge >= (sprintCD / 2))
+            if (abilityTwoCharge >= (abilityTwoCooldown / 2))
             {
                 GetComponent<CharacterBase>().speedMultiplier = 1;
             }
+            if (abilityTwoCharge < abilityTwoCooldown) abilityTwoCharge+=Time.deltaTime;
+        
 
-            if (Input.GetKeyDown(KeyCode.Space) && invisCharge >= invisCD)
+            if (Input.GetKeyDown(KeyCode.Space) && abilityOneCharge >= abilityOneCooldown)
             {
                 CmdInvisible(false);
                 _characterBase.speedMultiplier /= 2;
                 invisActive = true;
-                invisCharge = 0;
+                abilityOneCharge = 0;
                 postProcesser.enabled = true;
             }
 
-            if (invisCharge >= invisCD / invisDurationMult && invisActive)
+            if (abilityOneCharge >= abilityOneCooldown / invisDurationMult && invisActive)
             {
                 CmdInvisible(true);
                 _characterBase.speedMultiplier = speed;
@@ -70,7 +83,7 @@ namespace Tag
                 postProcesser.enabled = false;
             }
 
-            invisCharge++;
+            abilityOneCharge++;
             _renderer.enabled = false;
         }
 
