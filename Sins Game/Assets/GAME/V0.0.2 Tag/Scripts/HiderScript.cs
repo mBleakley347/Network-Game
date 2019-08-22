@@ -68,7 +68,7 @@ namespace Tag
             if (Input.GetKeyDown(KeyCode.Space) && abilityOneCharge >= abilityOneCooldown)
             {
                 CmdInvisible(false);
-                _characterBase.speedMultiplier /= 2;
+                //_characterBase.speedMultiplier /= 2;
                 invisActive = true;
                 abilityOneCharge = 0;
                 postProcesser.enabled = true;
@@ -78,7 +78,7 @@ namespace Tag
             if (abilityOneCharge >= abilityOneCooldown / invisDurationMult && invisActive)
             {
                 CmdInvisible(true);
-                _characterBase.speedMultiplier = speed;
+                //_characterBase.speedMultiplier = speed;
                 invisActive = false;
                 postProcesser.enabled = false;
             }

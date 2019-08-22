@@ -299,7 +299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncInterval: 0.1
   rb: {fileID: 920379041016952086}
-  speedMultiplier: 2
+  speedMultiplier: 3
   rotationSpeed: 0.7
 --- !u!114 &8852112289652849079
 MonoBehaviour:
