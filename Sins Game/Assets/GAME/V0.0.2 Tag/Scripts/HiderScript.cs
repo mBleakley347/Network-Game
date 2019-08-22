@@ -10,7 +10,8 @@ namespace Tag
     public class HiderScript : NetworkBehaviour
     {
         public NetManager manager;
-        private MeshRenderer _renderer;
+        public MeshRenderer _renderer;
+        public MeshRenderer _renderer2;
         private CharacterBase _characterBase;
         [SerializeField] private float abilityOneCooldown = 0f;
         [SerializeField] private float abilityOneCharge = 0f;
@@ -29,7 +30,6 @@ namespace Tag
         // Start is called before the first frame update
         void Start()
         {
-            _renderer = GetComponent<MeshRenderer>();
             _characterBase = GetComponent<CharacterBase>();
             speed = _characterBase.speedMultiplier;
             if (!isLocalPlayer) return;
@@ -109,6 +109,7 @@ namespace Tag
         public void RpcInvisible(bool value)
         {
             _renderer.enabled = value;
+            _renderer2.enabled = value;
         }
     }
 }
