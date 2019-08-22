@@ -97,7 +97,7 @@ LightmapSettings:
     m_ShowResolutionOverlay: 1
     m_ExportTrainingData: 0
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -318,19 +318,19 @@ MonoBehaviour:
   syncInterval: 0.1
   x: 200
   z: 200
-  scale: 60
+  scale: 80
   waves:
   - seed: 1
-    frequency: 5
-    amplitude: 1
+    frequency: -5
+    amplitude: 2
   - seed: 70
-    frequency: 8
-    amplitude: 8
+    frequency: 10
+    amplitude: 3
   steep: 0
   power: 20
   terrace: 3
-  rng: 0
-  lastRng: 0
+  rng: 1884.8049
+  lastRng: 1884.8049
 --- !u!154 &81171440
 TerrainCollider:
   m_ObjectHideFlags: 0
