@@ -21,14 +21,25 @@ namespace Tag
         public GameObject decoyLight;
         public GameObject decoy;
 
-        
-        [SerializeField] private float abilityOneCooldown = 0;
-        [SerializeField] private float abilityOneCharge = 0;
-        [SerializeField] private float abilityTwoCooldown = 0;
-        [SerializeField] private float abilityTwoCharge = 0;
 
-        [SerializeField] private CooldownManager abilityOne;
-        [SerializeField] private CooldownManager abilityTwo;
+        [SerializeField]
+        private float abilityOneCooldown = 0;
+
+        [SerializeField]
+        private float abilityOneCharge = 0;
+
+        [SerializeField]
+        private float abilityTwoCooldown = 0;
+
+        [SerializeField]
+        private float abilityTwoCharge = 0;
+
+        [SerializeField]
+        private CooldownManager abilityOne;
+
+        [SerializeField]
+        private CooldownManager abilityTwo;
+
         private float baseSpeed;
         private bool triggered = false;
         private GameObject icon;
@@ -48,33 +59,32 @@ namespace Tag
             baseSpeed = GetComponent<CharacterBase>().speedMultiplier;
             icon = GameObject.Find("footicon 2");
             icon2 = GameObject.Find("Fire");
-
         }
 
         private void FixedUpdate()
         {
             if (!isLocalPlayer)
             {
-                
                 return;
             }
+
             if (abilityOneCharge >= decoyLight.GetComponent<Decoy>().life)
             {
                 icon2.GetComponent<Image>().color = Color.white;
 
                 CmdDecoyLight(true);
             }
+
             if (Input.GetKeyDown(KeyCode.Space) && abilityOneCharge >= abilityOneCooldown)
             {
                 abilityOneCharge = 0;
                 CmdDecoyLight(false);
                 abilityOne.StartCooldown(abilityOneCooldown);
                 icon2.GetComponent<Image>().color = Color.green;
-
-
             }
-            if (abilityOneCharge < abilityOneCooldown) abilityOneCharge+=Time.deltaTime;
-            
+
+            if (abilityOneCharge < abilityOneCooldown) abilityOneCharge += Time.deltaTime;
+
             //dhjcbdc
             if (Input.GetKeyDown(KeyCode.LeftShift) && abilityTwoCharge >= abilityTwoCooldown)
             {
@@ -83,32 +93,39 @@ namespace Tag
                 GetComponent<CharacterBase>().speedMultiplier = GetComponent<CharacterBase>().speedMultiplier * 2;
                 abilityTwo.StartCooldown(abilityTwoCooldown);
                 icon.GetComponent<Image>().color = Color.green;
-                
             }
+
             if (abilityTwoCharge >= (abilityTwoCooldown / 2))
             {
                 GetComponent<CharacterBase>().speedMultiplier = baseSpeed;
                 icon.GetComponent<Image>().color = Color.white;
             }
-            if (abilityTwoCharge < abilityTwoCooldown) abilityTwoCharge+=Time.deltaTime;
+
+            if (abilityTwoCharge < abilityTwoCooldown) abilityTwoCharge += Time.deltaTime;
         }
 
 
         private void OnCollisionEnter(Collision other)
         {
-            if (!isLocalPlayer) return;
-            if (other.gameObject.tag.Equals("Player") && !triggered)
+//            if (!isLocalPlayer) return;
+            if (isServer)
             {
-                triggered = true;
-                CmdSwap();
+                if (other.gameObject.tag.Equals("Player") && !triggered)
+                {
+                    triggered = true;
+//                    CmdSwap();
+                    Swap();
+                }
             }
         }
 
-        [Command]
-        public void CmdSwap()
+//        [Command]
+//        public void CmdSwap()
+        public void Swap()
         {
             manager.SwapOver();
         }
+
         [Command]
         public void CmdDecoyLight(bool value)
         {
