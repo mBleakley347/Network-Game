@@ -299,7 +299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncInterval: 0.1
   rb: {fileID: 920379041016952086}
-  speedMultiplier: 3
+  speedMultiplier: 2.5
   rotationSpeed: 0.7
 --- !u!114 &8852112289652849079
 MonoBehaviour:
@@ -315,8 +315,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   localPlayerAuthority: 1
-  m_AssetId: 261e0c5416a7533478ddf053303a7c30
-  m_SceneId: 0
+  m_AssetId: 
+  m_SceneId: 2947474192
 --- !u!114 &323599788429239541
 MonoBehaviour:
   m_ObjectHideFlags: 0
