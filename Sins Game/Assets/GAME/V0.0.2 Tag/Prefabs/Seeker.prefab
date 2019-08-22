@@ -315,7 +315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   localPlayerAuthority: 1
-  m_AssetId: 
+  m_AssetId: 261e0c5416a7533478ddf053303a7c30
   m_SceneId: 0
 --- !u!114 &323599788429239541
 MonoBehaviour:
@@ -335,7 +335,7 @@ MonoBehaviour:
   decoyLight: {fileID: 1955464534789211020, guid: c9e57565e48d409428708786ee07c9db,
     type: 3}
   decoy: {fileID: 0}
-  abilityOneCooldown: 10
+  abilityOneCooldown: 15
   abilityOneCharge: 0
   abilityTwoCooldown: 5
   abilityTwoCharge: 0
