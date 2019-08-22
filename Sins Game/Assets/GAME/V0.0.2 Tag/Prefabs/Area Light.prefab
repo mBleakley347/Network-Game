@@ -47,8 +47,8 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 1, g: 0.2195122, b: 0, a: 1}
-  m_Intensity: 11.83
-  m_Range: 31.1
+  m_Intensity: 450
+  m_Range: 40
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -110,7 +110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   localPlayerAuthority: 1
-  m_AssetId: c9e57565e48d409428708786ee07c9db
+  m_AssetId: 261e0c5416a7533478ddf053303a7c30
   m_SceneId: 0
 --- !u!114 &8863682161843588477
 MonoBehaviour:
