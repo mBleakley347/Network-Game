@@ -5,6 +5,7 @@ using Mirror;
 using Mirror.Websocket;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 namespace Tag
 {
@@ -30,6 +31,8 @@ namespace Tag
         [SerializeField] private CooldownManager abilityTwo;
         private float baseSpeed;
         private bool triggered = false;
+        private GameObject icon;
+        private GameObject icon2;
 
 
         // Start is called before the first frame update
@@ -43,6 +46,9 @@ namespace Tag
             abilityOneCharge = abilityOneCooldown;
             abilityTwoCharge = abilityTwoCooldown;
             baseSpeed = GetComponent<CharacterBase>().speedMultiplier;
+            icon = GameObject.Find("footicon 2");
+            icon2 = GameObject.Find("Fire");
+
         }
 
         private void FixedUpdate()
@@ -52,13 +58,20 @@ namespace Tag
                 
                 return;
             }
-            if (abilityOneCharge >= decoyLight.GetComponent<Decoy>().life) CmdDecoyLight(true);
+            if (abilityOneCharge >= decoyLight.GetComponent<Decoy>().life)
+            {
+                icon2.GetComponent<Image>().color = Color.white;
+
+                CmdDecoyLight(true);
+            }
             if (Input.GetKeyDown(KeyCode.Space) && abilityOneCharge >= abilityOneCooldown)
             {
                 abilityOneCharge = 0;
                 CmdDecoyLight(false);
                 abilityOne.StartCooldown(abilityOneCooldown);
-                
+                icon2.GetComponent<Image>().color = Color.green;
+
+
             }
             if (abilityOneCharge < abilityOneCooldown) abilityOneCharge+=Time.deltaTime;
             
@@ -69,12 +82,13 @@ namespace Tag
                 //make another ability here where commented out code is below
                 GetComponent<CharacterBase>().speedMultiplier = GetComponent<CharacterBase>().speedMultiplier * 2;
                 abilityTwo.StartCooldown(abilityTwoCooldown);
-                
+                icon.GetComponent<Image>().color = Color.green;
                 
             }
             if (abilityTwoCharge >= (abilityTwoCooldown / 2))
             {
                 GetComponent<CharacterBase>().speedMultiplier = baseSpeed;
+                icon.GetComponent<Image>().color = Color.white;
             }
             if (abilityTwoCharge < abilityTwoCooldown) abilityTwoCharge+=Time.deltaTime;
         }
