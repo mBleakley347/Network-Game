@@ -87,7 +87,7 @@ public class T5 : NetworkBehaviour
     
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L)) ChangeMap();
+        //if (Input.GetKeyDown(KeyCode.L)) ChangeMap();
         
     }
 
