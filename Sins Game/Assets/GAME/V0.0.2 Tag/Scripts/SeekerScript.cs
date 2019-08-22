@@ -50,7 +50,7 @@ namespace Tag
                 
                 return;
             }
-            if (decoy == null) CmdDecoyLight(true);
+            if (abilityOneCharge >= decoyLight.GetComponent<Decoy>().life) CmdDecoyLight(true);
             if (Input.GetKeyDown(KeyCode.Space) && abilityOneCharge >= abilityOneCooldown)
             {
                 abilityOneCharge = 0;

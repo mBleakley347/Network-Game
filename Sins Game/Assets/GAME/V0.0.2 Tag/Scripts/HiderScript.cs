@@ -83,7 +83,7 @@ namespace Tag
                 postProcesser.enabled = false;
             }
 
-            abilityOneCharge++;
+            abilityOneCharge += Time.deltaTime;
             _renderer.enabled = false;
         }
 

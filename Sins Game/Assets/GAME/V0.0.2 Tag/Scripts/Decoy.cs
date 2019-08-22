@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Decoy : MonoBehaviour
 {
-    [SerializeField] private float life = 0f;
+    [SerializeField] public float life = 0f;
     [SerializeField] private int speed = 0;
 
     [SerializeField] private Rigidbody rb = null;
@@ -13,6 +13,6 @@ public class Decoy : MonoBehaviour
     {
         if (life > 0)rb.AddRelativeForce(Vector3.forward * speed,ForceMode.VelocityChange);
         else Destroy(gameObject);
-        life--;
+        life-= Time.deltaTime;
     }
 }

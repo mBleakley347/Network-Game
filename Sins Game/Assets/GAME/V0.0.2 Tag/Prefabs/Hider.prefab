@@ -132,8 +132,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   localPlayerAuthority: 1
-  m_AssetId: 
-  m_SceneId: 1764141704
+  m_AssetId: 45502ee5e735e514ea77f4db3721c3db
+  m_SceneId: 0
 --- !u!114 &8661698735171137153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,7 +162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncInterval: 0.1
   manager: {fileID: 0}
-  abilityOneCooldown: 1000
+  abilityOneCooldown: 15
   abilityOneCharge: 0
   invisDurationMult: 3
   abilityTwoCooldown: 8
