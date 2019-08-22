@@ -28,6 +28,7 @@ namespace Tag
 
         [SerializeField] private CooldownManager abilityOne;
         [SerializeField] private CooldownManager abilityTwo;
+        private bool triggered = false;
 
 
         // Start is called before the first frame update
@@ -81,8 +82,9 @@ namespace Tag
         private void OnCollisionEnter(Collision other)
         {
             if (!isLocalPlayer) return;
-            if (other.gameObject.tag.Equals("Player"))
+            if (other.gameObject.tag.Equals("Player") && !triggered)
             {
+                triggered = true;
                 CmdSwap();
             }
         }
