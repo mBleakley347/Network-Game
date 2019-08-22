@@ -316,7 +316,7 @@ MonoBehaviour:
   serverOnly: 0
   localPlayerAuthority: 1
   m_AssetId: 
-  m_SceneId: 2291926198
+  m_SceneId: 0
 --- !u!114 &323599788429239541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,7 +337,7 @@ MonoBehaviour:
   decoy: {fileID: 0}
   abilityOneCooldown: 10
   abilityOneCharge: 0
-  abilityTwoCooldown: 16
+  abilityTwoCooldown: 5
   abilityTwoCharge: 0
   abilityOne: {fileID: 0}
   abilityTwo: {fileID: 0}
