@@ -324,8 +324,8 @@ MonoBehaviour:
     frequency: 5
     amplitude: 1
   - seed: 70
-    frequency: 0
-    amplitude: 1
+    frequency: 8
+    amplitude: 8
   steep: 0
   power: 20
   terrace: 3
@@ -1849,7 +1849,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9a1385a1cb5728645962910048ccdf54, type: 2}
+  - {fileID: 2100000, guid: 07864134d7a01334eb595f0b97885d8e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
