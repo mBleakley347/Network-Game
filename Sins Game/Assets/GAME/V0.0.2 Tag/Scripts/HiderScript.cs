@@ -14,8 +14,7 @@ namespace Tag
         private CharacterBase _characterBase;
         [SerializeField] private float abilityOneCooldown = 0f;
         [SerializeField] private float abilityOneCharge = 0f;
-        [SerializeField] private int invisDurationMult = 0; 
-        [SerializeField] private int sprintCD = 0;
+        [SerializeField] private int invisDurationMult = 0;
         [SerializeField] private float abilityTwoCooldown = 0;
         [SerializeField] private float abilityTwoCharge = 0;
         [SerializeField] private CooldownManager abilityOne;
@@ -73,6 +72,7 @@ namespace Tag
                 invisActive = true;
                 abilityOneCharge = 0;
                 postProcesser.enabled = true;
+                abilityOne.StartCooldown(abilityOneCooldown);
             }
 
             if (abilityOneCharge >= abilityOneCooldown / invisDurationMult && invisActive)
