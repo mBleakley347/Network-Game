@@ -110,7 +110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   localPlayerAuthority: 1
-  m_AssetId: 261e0c5416a7533478ddf053303a7c30
+  m_AssetId: 
   m_SceneId: 0
 --- !u!114 &8863682161843588477
 MonoBehaviour:
@@ -165,7 +165,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1955464534789211020}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.005
