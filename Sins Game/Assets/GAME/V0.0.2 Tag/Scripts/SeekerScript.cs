@@ -28,6 +28,7 @@ namespace Tag
 
         [SerializeField] private CooldownManager abilityOne;
         [SerializeField] private CooldownManager abilityTwo;
+        private float baseSpeed;
         private bool triggered = false;
 
 
@@ -41,7 +42,7 @@ namespace Tag
 
             abilityOneCharge = abilityOneCooldown;
             abilityTwoCharge = abilityTwoCooldown;
-
+            baseSpeed = GetComponent<CharacterBase>().speedMultiplier;
         }
 
         private void FixedUpdate()
@@ -73,7 +74,7 @@ namespace Tag
             }
             if (abilityTwoCharge >= (abilityTwoCooldown / 2))
             {
-                GetComponent<CharacterBase>().speedMultiplier = 1;
+                GetComponent<CharacterBase>().speedMultiplier = baseSpeed;
             }
             if (abilityTwoCharge < abilityTwoCooldown) abilityTwoCharge+=Time.deltaTime;
         }
